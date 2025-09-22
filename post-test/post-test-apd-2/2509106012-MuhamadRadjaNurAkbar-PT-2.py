@@ -12,7 +12,7 @@ status = statusList[int(is_kelebihan)]
 #Kode Output
 print(f'''--- HASIL CEK BERAT BADAN---
     Nama pasien   : {nama_pasien}
-    Tinggi badan  : {tinggi_badan}
-    Berat badan   : {berat_badan}
-    Berat ideal   : {berat_ideal}
+    Tinggi badan  : {tinggi_badan} cm
+    Berat badan   : {berat_badan} kg
+    Berat ideal   : {berat_ideal} kg
     Status        : {status}''')
