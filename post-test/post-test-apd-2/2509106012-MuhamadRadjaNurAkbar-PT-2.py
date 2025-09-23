@@ -6,8 +6,8 @@ berat_badan = float(input('Masukkan berat badan anda dalam kg: '))
 #Deklarasi Variabel
 berat_ideal = (tinggi_badan - 100)
 is_kelebihan = berat_badan > berat_ideal
-statusList = ['Kelebihan berat badan', 'Berat badan seimbang']
-status = statusList[int(is_kelebihan)]
+status_list = ['Berat badan seimbang', 'Kelebihan berat badan']
+status = status_list[int(is_kelebihan)]
 
 #Kode Output
 print(f'''--- HASIL CEK BERAT BADAN---
