@@ -12,7 +12,7 @@ if member == 'y':
     username_kamu = input('Username\t:')
     password_kamu = input('Password\t:')
 
-    status_login = True if (username == username_kamu and password == password_kamu) else False
+    status_login = True if username == username_kamu and password == password_kamu else False
 
     if status_login == True:
         print('Login berhasil')
@@ -118,4 +118,3 @@ Harga total\t: Rp. {harga_total}
     
     else:
         print('Pilihan tidak dalam kategori!')
-
