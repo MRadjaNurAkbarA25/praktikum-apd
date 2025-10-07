@@ -1,5 +1,5 @@
 # Perulangan
-import os   
+import os
 
 usr = 'radja'
 pw = '012'
@@ -72,9 +72,9 @@ while True:
             print(f'Total sementara: {total}')
         elif pilihan == 4:
             os.system('cls')
-            print('=' * 39)
+            print('=' * 19)
             print('---STRUK BELANJA---')
-            print('=' * 39)
+            print('=' * 19)
             print(f'{keranjang}')
 
             if loginn: #Jika Member
@@ -85,8 +85,7 @@ while True:
                 print(f'Total\t        : Rp. {harga_akhir:,}')
                 break
             else: #Non-Member
-                harga_akhir = total
-                print(f'Total\t        : Rp. {harga_akhir:,}')
+                print(f'Total\t        : Rp. {total:,}')
                 print('---TERIMA KASIH TELAH BERBELANJA---')
                 break
         else:
@@ -94,7 +93,16 @@ while True:
             print('Input tidak valid!')
 
 #Logika Konfirmasi
-    ulang = input('Ingin memulai transaksi baru?(y/n):')
-    if ulang != 'y':
-        print('Terima kasih telah berbelanja!')
+    while True:
+        ulang = input('Ingin memulai transaksi baru?(y/n):')
+        if ulang == 'y':
+            break
+        elif ulang == 'n':
+            print('Terima kasih telah berbelanja!')
+            break
+        else:
+            print('Input tidak valid')
+
+    if ulang == 'n':
         break
+
