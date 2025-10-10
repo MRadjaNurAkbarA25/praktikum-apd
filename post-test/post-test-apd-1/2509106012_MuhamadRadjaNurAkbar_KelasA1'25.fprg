@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Tugas Posttest 1"/>
+        <attribute name="authors" value="Lenovo Gk"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-09-14 08:33:42 AM"/>
+        <attribute name="created" value="TGVub3ZvIEdrO0xBUFRPUC1SOUxNUklHQTsyMDI1LTA5LTE0OzA3OjUwOjQxIEFNOzMxOTg="/>
+        <attribute name="edited" value="TGVub3ZvIEdrO0xBUFRPUC1SOUxNUklHQTsyMDI1LTA5LTE0OzA4OjMzOjQyIEFNOzE7MzMwOQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="Nilai" type="Real" array="False" size=""/>
+            <input variable="Nilai"/>
+            <if expression="nilai &gt;= 80">
+                <then>
+                    <output expression="&quot;Nilai A&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="Nilai &gt;= 70 AND Nilai &lt;= 79">
+                        <then>
+                            <output expression="&quot;Nilai B&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="Nilai &gt;= 60 AND Nilai &lt;= 69">
+                                <then>
+                                    <output expression="&quot;Nilai C&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <if expression="Nilai &lt; 60">
+                                        <then>
+                                            <output expression="&quot;Nilai D&quot;" newline="True"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
