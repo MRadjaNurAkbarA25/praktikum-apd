@@ -38,6 +38,7 @@ while True: #Logika menu terus berjalan hingga berhasil login/register
             os.system ('cls || clear')
             print('Login berhasil!')
             time.sleep(1)
+            break
         else:
             os.system ('cls || clear')
             print('Username atau Password salah')
@@ -67,21 +68,22 @@ while True: #Logika menu terus berjalan hingga berhasil login/register
         os.system ('cls || clear')
         print('Pilihan tidak dalam menu!')
 
+if loginn:
     while True:
         if role == 'admin':
+            print('Halo, radja!')
             print('''Pilih menu
 1. Lihat barang
 2. Tambah barang
 3. Ubah data barang
 4. Hapus barang
 5. Keluar''')
-            
+        menu_admin = int(input('Pilih menu:'))    
         if menu_admin == 1:
             print('Barang di kantor saat ini')
             for item in inventaris:
                 tabel.add_row(item)
             print(tabel)
-            menu_admin = int(input('Pilih menu:'))
         elif menu_admin == 2:
                 kode_barang_cek = False
                 barang_baru = input('Nama barang\t:')
