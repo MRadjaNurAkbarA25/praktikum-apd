@@ -411,3 +411,4 @@ Kondisi\t\t: {hapus_barang[4]}''')
             else: 
                 os.system('cls || clear')
                 print('Pilihan tidak valid!')
+#Selesai 
