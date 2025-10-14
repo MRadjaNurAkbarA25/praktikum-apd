@@ -25,19 +25,19 @@ while True: #Loop utama program
     role = None
     loginn = False
     while True:
-        print('''===MAIN MENU===
+        print('''===Menu===
 1. Login
 2. Register
-3. Keluar''') #Main menu
-        menu = input('Silahkan pilih opsi:')
+3. Keluar''')
+        menu = input('Pilih menu:')
         
         if menu == '1': #Menu login
             while True:
                 print('Login akun')
                 while True:
                     usr = input('Username\t:')
-                    if usr.strip() != '':
-                        break
+                    if usr.strip() != '': #Mencegah isi input yang kosong dengan .strip()
+                        break #Jika variabel tidak kosong (!=) maka loop while akan break 
                     else:
                         print('Username tidak boleh kosong!')
                 while True:        
@@ -50,16 +50,18 @@ while True: #Loop utama program
                 #for agar bisa langsung membaca semua elemen termasuk yang ada di dalam nested list
                     if usr == u[0] and str(pw) == u[1]: 
                         loginn = True #Status loginn menjadi True jika usr & pw benar
-                        role = u[2]
+                        role = u[2] #Setelah usr dan pw benar, role akan di set ke role yang ada di list
                         break
                 if loginn: 
                     os.system ('cls || clear')
                     print('Login berhasil!')
-                    time.sleep(1) #Jeda sebelum menuju menu admin dan users
+                    time.sleep(1) #Jeda sebelum menuju menu admin/users
                     break
                 else:
                     os.system ('cls || clear')
                     print('Username atau Password salah!')
+            if loginn: #Untuk memberhentikan loop login dan lanjut ke loop admin/user
+                break
             
         elif menu == '2': #Menu register
             os.system ('cls || clear')
@@ -77,13 +79,11 @@ while True: #Loop utama program
                         cek_ada_usr = True
                         break
                 if cek_ada_usr:
-                    print('Username sudah terpakai!')
+                    print('Username sudah terpakai')
                 else:
                     while True:
-                        pw_baru = input('Password\t:')
-                        if pw_baru.strip() == '':
-                            print('Password tidak boleh kosong!')
-                        elif len(pw_baru) < 3:
+                        pw_baru = input('Password baru\t:')
+                        if len(pw_baru) < 3: #Mencegah jumlah karakter password di bawah 3
                             print('Password minimal berjumlah 3 karakter!')
                         else: 
                             break
@@ -93,9 +93,16 @@ while True: #Loop utama program
                     break
                 
         elif menu == '3': #Keluar
-            os.system ('cls || clear')
-            print('Anda menekan tombol keluar! Terima kasih telah menggunakan program ini!')
-            exit()
+            os.system('cls || clear')
+            konfirmasiKeluar = input('Yakin ingin keluar?(y/n):')
+            if konfirmasiKeluar == 'y':
+                os.system('cls || clear')
+                print('Anda menekan tombol keluar! Terima kasih telah menggunakan program ini!')
+                exit() #Keluar dari program
+            elif konfirmasiKeluar == 'n':
+                print('Kembali ke program')
+            else:
+                print('Pilihan tidak valid!')
             
         else: #Pilihan di luar opsi
             os.system ('cls || clear')
@@ -104,7 +111,7 @@ while True: #Loop utama program
     while True:
         if role == 'admin': #Menu admin
             print(f'Halo, {usr}!')
-            print('''Pilih menu
+            print('''===MENU ADMIN===
 1. Lihat barang
 2. Tambah barang
 3. Ubah data barang
@@ -115,17 +122,16 @@ while True: #Loop utama program
         
             if menu_admin == '1': #Lihat barang, READ
                 os.system ('cls || clear')
-                print('Barang di kantor saat ini')
-                
-                tabel.clear_rows()
+                print('Daftar barang')
+                tabel.clear_rows() #Membersihkan tabel yang berulang
                 
                 for item in inventaris:
                     tabel.add_row(item)
-                print(tabel)
-                banyak_barang = len(inventaris)
+                print(tabel) #Daftar barang ditunjukkan dalam bentuk tabel
+                banyak_barang = len(inventaris) #len untuk menghitung jumlah barang, jumlah nested list 
                 print(f'Jumlah barang: {banyak_barang}')
             
-            elif menu_admin == '2':
+            elif menu_admin == '2': 
                 os.system ('cls || clear')
                 print('Tambah barang')
                 
@@ -156,7 +162,7 @@ while True: #Loop utama program
                     
                 while True:
                     jumlah_input = input('Jumlah barang\t:') #Jumlah barang baru
-                    if jumlah_input.isdigit() and int(jumlah_input) > 0: #Mencegah jumlah barang diisi dengan huruf atau 0
+                    if jumlah_input.isdigit() and int(jumlah_input) > 0: #Mencegah jumlah barang diisi dengan huruf atau 0, dan kosong
                         jumlah_barang = int(jumlah_input)
                         break
                     else:
@@ -177,20 +183,18 @@ while True: #Loop utama program
                 inventaris.append([barang_baru, kode_barang, jumlah_barang,  kategori_barang, kondisi_barang])
                 os.system('cls || clear')
                 print('Barang berhasil ditambahkan!')
-                time.sleep[1]
-                continue
-            
+                            
             elif menu_admin == '3':
                 os.system('cls || clear')
                 print('Ubah data barang')
-                print('Barang di kantor saat ini')
-                
+                print('Daftar barang')
                 tabel.clear_rows()
                 
                 for item in inventaris:
                     tabel.add_row(item)
                 print(tabel)
                 while True:
+                    #Membaca apakah kode barang yang diinput ada di list inventaris
                     cari_kode = input('Masukkan kode barang yang ingin diubah: ')
                     if cari_kode.strip() != '':
                         break
@@ -199,9 +203,9 @@ while True: #Loop utama program
                 os.system('cls || clear')
                 ditemukan = False
                 
-                for ubah_barang in inventaris:
-                    if ubah_barang[1] == cari_kode:
-                        ditemukan = True
+                for ubah_barang in inventaris: #variabel ubah_barang akan terus digunakan dalam UPDATE
+                    if ubah_barang[1] == cari_kode: #Juga menggunakan read
+                        ditemukan = True 
                         print(f'''
 Data ditemukan:
 Nama\t\t: {ubah_barang[0]}
@@ -214,8 +218,7 @@ Kondisi\t\t: {ubah_barang[4]}''')
 1. Ubah nama barang
 2. Ubah jumlah barang
 3. Ubah kategori
-4. Ubah kondisi
-5. Batalkan''')
+4. Ubah kondisi''')
                         pilihan_ubah = input('Pilih apa yang ingin diubah: ')
                         
                         if pilihan_ubah == '1':
@@ -236,30 +239,32 @@ Kondisi\t\t: {ubah_barang[4]}''')
 1. Tambah jumlah barang
 2. Kurangi jumlah barang''')
                             while True:
-                                tamkur = input('Pilih (1/2): ')
-                                if tamkur in ['1', '2']:
+                                tamkur = input('Pilih (1/2): ') #tamkur = tambah kurang
+                                if tamkur in ['1', '2']: #jika input tamkur adalah 1/2, maka lanjut
                                     break
                                 else:
-                                    print('Pilihan tidak valid! Pilih 1 atau 2')
+                                    print('Pilihan tidak valid!')
                             while True:
                                 jumlah_tamkur = input('Masukkan jumlah: ')
-                                if jumlah_tamkur.isdigit() and int(jumlah_tamkur) > 0:
-                                    proses_operasional = int(jumlah_tamkur)
-                                    break
+                                if jumlah_tamkur.isdigit() and int(jumlah_tamkur) > 0: #Mencegah jumlah barang diisi dengan huruf atau 0, dan kosong
+                                    proses_operasional = int(jumlah_tamkur) #Variabel yang nilainya sama dengan variabel lain 
+                                    
+                                    if tamkur == '1':
+                                        ubah_barang[2] += proses_operasional #Menambah jumlah barang
+                                        print('Jumlah barang berhasil ditambahkan!')
+                                        break
+                                    
+                                    elif tamkur == '2':
+                                        if ubah_barang[2] >= proses_operasional: #Mencegah jumlah barang yang ingin kurangi lebih besar dari jumlah saat ini
+                                            ubah_barang[2] -= proses_operasional
+                                            print('Jumlah barang berhasil dikurangi!')
+                                            break
+                                        else:
+                                            print('Jumlah terlalu besar untuk dikurangi')
                                 else:
                                     print('Harus berupa angka lebih dari 0!')
-                                    
-                            if tamkur == '1':
-                                ubah_barang[2] += proses_operasional
-                                print('Jumlah barang berhasil ditambahkan!')
-                            elif tamkur == '2':
-                                if ubah_barang[2] >= proses_operasional:
-                                    ubah_barang[2] -= proses_operasional
-                                    print('Jumlah barang berhasil dikurangi!')
-                                else:
-                                    print('Jumlah terlalu besar untuk dikurangi')
                                 
-                        elif pilihan_ubah == '3':
+                        elif pilihan_ubah == '3': #Update kategori barang
                             os.system('cls || clear')
                             while True:
                                 ubah_barang[3] = input('Ubah kategori barang: ')
@@ -269,7 +274,7 @@ Kondisi\t\t: {ubah_barang[4]}''')
                                     print('Kategori barang tidak boleh kosong!')
                             print('Kategori berhasil diubah!')
                             
-                        elif pilihan_ubah == '4':
+                        elif pilihan_ubah == '4': #Update kondisi barang
                             os.system('cls || clear')
                             while True:
                                 ubah_barang[4] = input('Ubah kondisi barang: ')
@@ -279,19 +284,24 @@ Kondisi\t\t: {ubah_barang[4]}''')
                                     print('Kondisi barang tidak boleh kosong!')
                             print('Kondisi barang berhasil diubah')
                             
-                        elif pilihan_ubah == '5':
-                            os.system('cls || clear')
-                            print('Perubahan dibatalkan!')
                         else:
                             os.system('cls || clear')
                             print('Pilihan tidak valid')
                         break
                 if not ditemukan:
+                    #Kode barang yang tidak sesuai bernilai false, sehingga kode ini jalan
                     os.system('cls || clear')
                     print('Kode barang tidak ditemukan')
         
-            elif menu_admin == '4':
+            elif menu_admin == '4': #DELETE, menghapus barang
                 os.system('cls || clear')
+                print('Daftar barang')
+                
+                tabel.clear_rows()
+                
+                for item in inventaris:
+                    tabel.add_row(item)
+                print(tabel)
                 print('Hapus barang')
                 
                 while True:
@@ -302,7 +312,7 @@ Kondisi\t\t: {ubah_barang[4]}''')
                         print('Tidak boleh kosong!')
                 ketemu = False
                 
-                for hapus_barang in inventaris:
+                for hapus_barang in inventaris: #Membaca apakah kode barang yang diinput ada di list inventaris
                     if hapus_barang[1] == hapus:
                         ketemu = True
                         print(f'''
@@ -355,16 +365,16 @@ Kondisi\t\t: {hapus_barang[4]}''')
                 os.system('cls || clear')
                 print('Pilihan tidak valid!')
                 
-        elif role == 'user':
+        else: #Menu user
             print(f'Halo, {usr}!')
-            print('''Pilih menu
+            print('''===MENU USER===
 1. Lihat barang
 2. Log-out
 3. Keluar''')
             menu_user = input('Pilih menu: ')
             if menu_user == '1':
                 os.system('cls || clear')
-                print('Barang di kantor saat ini')
+                print('Daftar barang')
                 
                 tabel.clear_rows()
                 
