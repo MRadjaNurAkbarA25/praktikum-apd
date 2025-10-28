@@ -27,7 +27,7 @@ while True: #Loop utama program
                 if loginn:
                     sip.clear()
                     print('Login berhasil!')
-                    sip.delay()
+                    sip.delay(1)
                     break
                 else:
                     sip.clear()
