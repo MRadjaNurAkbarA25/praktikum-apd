@@ -26,7 +26,7 @@ while True: #Loop utama program
         elif menu == '3':
             sip.keluar()
         else:
-            print('Pilihan tidak valid!')
+            print('Input tidak valid!')
     log_out = False
     
     while True:
@@ -71,7 +71,7 @@ while True: #Loop utama program
             
             else:
                 sip.clear()
-                print('Pilihan tidak valid!')
+                print('Input tidak valid!')
             continue        
         if log_out:
             break
@@ -97,6 +97,6 @@ while True: #Loop utama program
                 sip.clear()
                 sip.keluar()    
             else:
-                print('Pilihan tidak valid!')
+                print('Input tidak valid!')
         if log_out:
             break

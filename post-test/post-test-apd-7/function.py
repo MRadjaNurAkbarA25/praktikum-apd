@@ -32,7 +32,7 @@ def input_str(pesan): #Fungsi erorr handling untuk mencegah input kosong
         try:
             fakta = input(pesan)
             if fakta.strip() == '':
-                raise ValueError('Input tidak boleh kosong')
+                raise ValueError('Input tidak boleh kosong!')
             return fakta
         except ValueError as e:
             print(e)  
@@ -256,7 +256,7 @@ Kondisi\t\t: {ada['kondisi']}''')
                 return
             
             else:
-                print('Pilihan tidak valid!')
+                print('Input tidak valid!')
                 delay()
                 return
             
@@ -330,5 +330,3 @@ def logout(): #Fungsi log-out dari menu admin/user
         delay()  
         return False
     
-    #Tumbal
-    print('Tumbal git')
