@@ -328,3 +328,6 @@ def logout(): #Fungsi log-out dari menu admin/user
         print('Pilihan tidak valid!')
         delay()  
         return False
+    
+    #Tumbal
+    print('Tumbal git')
