@@ -28,13 +28,14 @@ def tampil_menu_rekursif(menu_list, index = 0): #Fungsi rekursif untuk menampilk
     tampil_menu_rekursif(menu_list, index + 1)
 
 def input_str(pesan): #Fungsi erorr handling untuk mencegah input kosong
-    try:
-        fakta = input(pesan)
-        if fakta.strip() == '':
-            raise ValueError('Input tidak boleh kosong')
-        return fakta
-    except ValueError as e:
-        print(e)  
+    while True:
+        try:
+            fakta = input(pesan)
+            if fakta.strip() == '':
+                raise ValueError('Input tidak boleh kosong')
+            return fakta
+        except ValueError as e:
+            print(e)  
 
 def regist_pw(pesan): #Fungsi error handling untuk memasukkan password akun baru(registrasi)
     while True: #
